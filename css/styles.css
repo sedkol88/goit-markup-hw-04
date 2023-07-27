@@ -484,11 +484,13 @@ body {
 .modal-icon-close {
   fill: var(--navy-blue-modal);
 }
-.icon-close-box:hover {
+.icon-close-box:hover,
+.icon-close-box:focus {
   background-color: var(--ocean);
   cursor: pointer;
 }
-.icon-close-box:hover .modal-icon-close {
+.icon-close-box:hover .modal-icon-close,
+.icon-close-box:focus .modal-icon-close {
   fill: #fff;
 }
 
