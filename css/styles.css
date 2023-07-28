@@ -493,7 +493,10 @@ body {
   margin-right: var(--list-gap);
   margin-bottom: calc(2 * var(--list-gap));
 
-  transition-property: border, background-color, box-shadow;
+  border: 1px solid var(--cornflower, #e7e9fc);
+  background-color: var(--white, #fff);
+
+  transition-property: border, box-shadow;
   transition-duration: 250ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -507,14 +510,46 @@ body {
 .cards-item:hover,
 .cards-item:focus {
   border: 1px solid var(--cloud, #f4f4fd);
-  background-color: var(--white, #fff);
   box-shadow: 0px 2px 1px 0px rgba(46, 47, 66, 0.08),
     0px 1px 1px 0px rgba(46, 47, 66, 0.16),
     0px 1px 6px 0px rgba(46, 47, 66, 0.08);
 }
 
+.cards-item:hover .cards-cover {
+  transform: translateY(0);
+}
+
 .cards-link {
 }
+
+.cards-cover-wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+.cards-cover {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  padding-top: 40px;
+  padding-left: 32px;
+  padding-right: 32px;
+
+  background: var(--iris, #4d5ae5);
+  transform: translateY(100%);
+
+  transition-property: transform;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cards-cover-text {
+  color: var(--cloud, #f4f4fd);
+  font-size: 16px;
+  line-height: 1.5; /* 150% */
+  letter-spacing: 0.02em;
+}
+
 .cards-item-box {
   padding: 32px 16px;
   border: 1px solid var(--cornflower);
@@ -591,12 +626,14 @@ body {
   height: 100%;
   background: var(--navyblue-modal, rgba(46, 47, 66, 0.4));
   top: 0;
+
+  transition: opacity 250ms linear, visibility 250ms linear;
 }
 .modal {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(1);
 
   width: 408px;
   min-height: 584px;
@@ -604,6 +641,14 @@ body {
   background: var(--dairy, #fcfcfc);
   box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.2),
     0px 1px 3px 0px rgba(0, 0, 0, 0.12), 0px 1px 1px 0px rgba(0, 0, 0, 0.14);
+
+  transition-property: transform;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.backdrop.is-hidden .modal {
+  transform: translate(-50%, -50%) scale(0);
 }
 
 .modal-close-btn {
